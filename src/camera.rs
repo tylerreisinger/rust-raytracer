@@ -26,9 +26,7 @@ impl CameraScreen {
 }
 
 impl Camera {
-    pub fn new(screen: CameraScreen, 
-               physical_size: (f64, f64),
-               ray_dist: f64) -> Camera {
+    pub fn new(screen: CameraScreen, physical_size: (f64, f64), ray_dist: f64) -> Camera {
         Camera {
             screen: screen,
             physical_width: physical_size.0,
@@ -51,8 +49,8 @@ impl Camera {
 
         let dx = self.physical_width / (self.screen.px_wide as f64);
         let dy = self.physical_height / (self.screen.px_high as f64);
-        
-        let target_vec = Vector3::new(offset_x*dx, offset_y*dy, 0.0);
+
+        let target_vec = Vector3::new(offset_x * dx, offset_y * dy, 0.0);
         let direction = target_vec - ray_origin;
 
         Ray::new(target_vec, direction.normalize())
@@ -70,21 +68,16 @@ mod tests {
         let camera = Camera::new(screen, (1.0, 1.0), 1.0);
 
         let center_ray = camera.ray_from_px(5, 5);
-        assert_relative_eq!(*center_ray.direction(), 
-            Vector3::new(0.0, 0.0, 1.0));
-        assert_relative_eq!(*center_ray.origin(), 
-            Vector3::new(0.0, 0.0, 0.0));
+        assert_relative_eq!(*center_ray.direction(), Vector3::new(0.0, 0.0, 1.0));
+        assert_relative_eq!(*center_ray.origin(), Vector3::new(0.0, 0.0, 0.0));
         let top_left_ray = camera.ray_from_px(0, 0);
 
-        assert_relative_eq!(*top_left_ray.origin(),
-            Vector3::new(-0.5, -0.5, 0.0));
+        assert_relative_eq!(*top_left_ray.origin(), Vector3::new(-0.5, -0.5, 0.0));
         assert_relative_eq!(*top_left_ray.direction(),
-            Vector3::new(-0.5, -0.5, 1.0).normalize());
+                            Vector3::new(-0.5, -0.5, 1.0).normalize());
 
         let ray1 = camera.ray_from_px(8, 3);
-        assert_relative_eq!(*ray1.origin(),
-            Vector3::new(0.3, -0.2, 0.0));
-        assert_relative_eq!(*ray1.direction(),
-            Vector3::new(0.3, -0.2, 1.0).normalize());
+        assert_relative_eq!(*ray1.origin(), Vector3::new(0.3, -0.2, 0.0));
+        assert_relative_eq!(*ray1.direction(), Vector3::new(0.3, -0.2, 1.0).normalize());
     }
 }

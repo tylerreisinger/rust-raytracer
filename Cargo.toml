@@ -6,3 +6,4 @@ authors = ["Tyler Reisinger <reisinger.tyler@gmail.com>"]
 [dependencies]
 cgmath = "0.12.0"
 approx = "0.1.1"
+num = "0.1.36"
