@@ -14,5 +14,6 @@ pub trait Geometry {
 }
 
 pub trait RayIntersection {
-    fn ray_intersection(&self, ray: &Ray<f64>) -> Option<GeometryIntersection>;
+    fn ray_intersection(&self, ray: &Ray<f64>) 
+        -> Option<GeometryIntersection>;
 }

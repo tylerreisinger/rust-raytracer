@@ -7,3 +7,4 @@ authors = ["Tyler Reisinger <reisinger.tyler@gmail.com>"]
 cgmath = "0.12.0"
 approx = "0.1.1"
 num = "0.1.36"
+image = "0.12.3"

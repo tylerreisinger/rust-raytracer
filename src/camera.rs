@@ -23,6 +23,10 @@ impl CameraScreen {
             px_high: px_high,
         }
     }
+
+    pub fn geometry(&self) -> (usize, usize) {
+        (self.px_wide, self.px_high)
+    }
 }
 
 impl Camera {
@@ -40,6 +44,12 @@ impl Camera {
     }
     pub fn physical_dimensions(&self) -> (f64, f64) {
         (self.physical_width, self.physical_height)
+    }
+    pub fn screen_dimensions(&self) -> (usize, usize) {
+        self.screen.geometry()
+    }
+    pub fn pixel_count(&self) -> usize {
+        self.screen.px_wide * self.screen.px_high
     }
 
     pub fn ray_from_px(&self, pix_x: usize, pix_y: usize) -> Ray<f64> {
